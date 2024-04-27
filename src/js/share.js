@@ -99,12 +99,12 @@ fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
 // funciones manejadoras de eventos input y boton search.
 const handleInput = (ev) =>{
     const input=ev.target;
-    const valueInput=input.value.toLowerCase();
+    const listcoctel=input.value.toLowerCase();
     /* console.log(valueInput);
     console.log(coctelsData); */
     
        if(input.value.length>0)
-     listcoctels=coctelsData.find((eachcoctels)=>eachcoctels.Name===input.value);
+     listcoctel=coctelsData.find((eachcoctels)=>eachcoctels.Name===input.value);
         else if(input.value === coctelsData);
         return data
 };
@@ -117,8 +117,8 @@ const handleInput = (ev) =>{
 
 const handleClick=(event)=>{
      event.preventDefault() 
-     const inputValue = input.value.toLowerCase();
-     const coctel=coctelsData.find((coctel)=> coctel.Name.toLowerCase())=== inputValue;
+     const input= input.value.toLowerCase();
+     const listcoctels=coctelsData.find((coctel)=> coctel.Name.toLowerCase())=== inputValue;
      if (coctel){
         renderCoctelsCards([coctel]);
      }else{
