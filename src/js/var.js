@@ -1,3 +1,5 @@
+"use strict";
+
 // variables globales seccion buscador, valor de input y el boton de buscar.
 
 const input=document.querySelector(".js_input");

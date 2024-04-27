@@ -1,4 +1,4 @@
-'use.stric';
+"use strict";
 // array vacio ,q tendra q contener los objetos del listado de cocteles.
 
 const coctelsData=[
@@ -92,7 +92,7 @@ fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
        
     });   
 };
-getDataApi();
+/* getDataApi(); */
 //se ejecuta cuando el usuario escribe en el input
 
 
@@ -102,39 +102,29 @@ const handleInput = (ev) =>{
     const valueInput=input.value.toLowerCase();
     /* console.log(valueInput);
     console.log(coctelsData); */
-    if (input.value.length>0){
-        const data=coctelsData.find((eachcoctels)=>eachcoctels.Name===input.value);
-        if(input.value === coctelsData)
+    
+       if(input.value.length>0)
+     listcoctels=coctelsData.find((eachcoctels)=>eachcoctels.Name===input.value);
+        else if(input.value === coctelsData);
         return data
-        }else if(input.value.length>0){
-            alert('Ingrese un valor valido');
-        }
-        else {
-            drinklink.href="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
-           
+};
 
-    const filter=coctelsData.filter((eachcoctels)=>{const nameLower = eachcoctels.Name.toLowerCase();
+    const filteredCoctels=coctelsData.filter((coctel)=>{const nameLower = coctel.Name.toLowerCase();
      return nameLower=== valueInput || nameLower.includes(valueInput);
 });
-     renderAllCoctels(filterData); 
-};
+     renderCoctelsCards(filteredCoctels); 
 
 
 const handleClick=(event)=>{
-    /* event.preventDefault() */
-   /*  if (input.value.length>0){
-    const data=coctelsData.find((eachcoctels)=>eachcoctels.Name===input.value);
-    if(input.value === coctelsData)
-    return data
-    }else if(input.value.length>0){
-        alert('Ingrese un valor valido');
-    }
-    else {
-        drinklink.href="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
-        
-}
-}; */
-     getDataApi();  
+     event.preventDefault() 
+     const inputValue = input.value.toLowerCase();
+     const coctel=coctelsData.find((coctel)=> coctel.Name.toLowerCase())=== inputValue;
+     if (coctel){
+        renderCoctelsCards([coctel]);
+     }else{
+        alert("No se ha encontrado el coctel")
+}};
+    getDataApi(); 
  /* window.location.href='https://www.thecocktaildb.com/'; */
 
 //cuando carga la pagina
