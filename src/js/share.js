@@ -1,113 +1,140 @@
 'use.stric';
 // array vacio ,q tendra q contener los objetos del listado de cocteles.
 
-let coctelsData=[
+const coctelsData=[
     {
         id:"11007",
         Name:"Margarita",
-        img:'https//www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg',
+        drink:"www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
+        img:"https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
     },
 
     {
         id:"11118",
-        Name:"11118",
-        img:'https//www.thecocktaildb.com/images/media/drink/bry4qh1582751040.jpg',
+        drink:"www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
+        Name:"blue Margarita",
+        img:"https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
     },
 
     {
         id: "17216",
+        drink: "www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
         Name: "Tommy's Margarita",
-        img:'https//www.thecocktaildb.com/images/media/drink/loezxn1504373874.jpg',
+        
+        img:"https://www.thecocktaildb.com/images/media/drink/bry4qh1582751040.jpg",
     },
 
     {
         id:"16158",
+        drink: "www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
         Name: "Whitecap Margarita",
-        img:'https://www.thecocktaildb.com/images/media/drink/srpxxp1441209622.jpg',
+        img:"https://www.thecocktaildb.com/images/media/drink/loezxn1504373874.jpg",
     },
 
     {
         id:"12322",
-        Name: "Strawberry Margarita",
-        img:'https://www.thecocktaildb.com/images/media/drink/tqyrpw1439905311.jpg',
+        drink: "www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
+        Name:"strawberry Margarita",
+        img:"https://www.thecocktaildb.com/images/media/drink/srpxxp1441209622.jpg",
     },
 
     {
         id: "178332",
+        drink:"www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
         Name:"Smashed Watermelon Margarita",
-        img:'https://www.thecocktaildb.com/images/media/drink/dztcv51598717861.jpg',
+        img:"https://www.thecocktaildb.com/images/media/drink/tqyrpw1439905311.jpg",
     },
 ];
-// creamos una funcion que renderize un solo coctel
 
- /* const renderOnecoctels=(eachcoctels)=>{
-    let li=document.createElement('li');
-    li.innerHTML=`
-    <h3>${eachcoctels.Name}</h3>
-    <img src="${eachcoctels.img}" alt="${eachcoctels.Name}">
-    `
-    for(const eachcoctels of coctelsData){
-       renderOnecoctels(eachcoctels);
-
-    }
-    ul.appendChild(li);
-}; */
 // pintamos tarjetas de los cocteles
 
 
-// creamos una funcion que renderize todos los cocteles de nuestro array
-const renderAllCoctels= (list)=>{
-  const ul=document.getElementById('coctel-list');
-  /* for(const eachcoctels of list) { */
-   ul.innerHTML+='';
-   list.forEach((eachcoctels) => {
-   /*  ul.innerHTML +=  */
-   ' <li>
-       <h3> ${eachcoctels.Name}</h3>;
-        <img src="${eachcoctels.img}" alt="${eachcoctels.Name}"/>
-    </li>'};
-    
-   });
+// creamos una funcion que renderize todos los cocteles de 
+
+
+const renderAllCoctels=(listcoctel)=>{
+    const ul=document.getElementById("listcoctel");
+    ul.innerHTML='';
+    listcoctel.forEach((eachcoctels) => {
+        ul.innerHTML+=
+        `<li class="list"> 
+          <img  src = "${eachcoctels.img}"/>
+          <h4> ${eachcoctels.Name} </h4>
+        </li>`;
+    })};
+//creamos las tarjetaS de los cocteles pintadolas en el html desde js
+const renderCoctelsCards =(coctelsData)=>{
+    const container =document.getElementById("coctel-container");
+    container.innerHTML='';
+    coctelsData.forEach((coctel)=>{
+        //creamos el elemento de la tarjeta
+        const card=document.createElement('div');
+        card.classList.add('card');
+        //informacion de la bebida en la tarjeta
+        card.innerHTML=`
+        <h3>${coctel.Name}</h3>
+        <img src="${coctel.img}"/>
+        `;
+        //agregamos la tarjeta a nuestra seccion del listado de cocteles.
+        container.appendChild(card);//es el padre de nuestra ul y li.
+    });
+    //llamamos a la funcion
+   
 };
+   renderCoctelsCards(coctelsData);
+
 //hacemos peticion al servidor 
-const getDataApi=()=>{    
+function getDataApi(){    
 fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
     .then((response) => response.json())
     .then((data)=> {
-        coctelsData = data;
-        renderAllCoctels(coctelsData);
-        
-    });
-     
+        /* renderAllCoctels(data.drinks); */
+       
+    });   
 };
 getDataApi();
 //se ejecuta cuando el usuario escribe en el input
-/* let drikData=[]; */
 
 
+// funciones manejadoras de eventos input y boton search.
 const handleInput = (ev) =>{
     const input=ev.target;
-    const valueInput=input.value;
+    const valueInput=input.value.toLowerCase();
     /* console.log(valueInput);
     console.log(coctelsData); */
+    if (input.value.length>0){
+        const data=coctelsData.find((eachcoctels)=>eachcoctels.Name===input.value);
+        if(input.value === coctelsData)
+        return data
+        }else if(input.value.length>0){
+            alert('Ingrese un valor valido');
+        }
+        else {
+            drinklink.href="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
+           
 
-    const filterCoctelsData=coctelsData
-    .filter((eachcoctels)=>{const nameLower = eachcoctels.Name.toLocaleLowerCase();
+    const filter=coctelsData.filter((eachcoctels)=>{const nameLower = eachcoctels.Name.toLowerCase();
      return nameLower=== valueInput || nameLower.includes(valueInput);
 });
-    renderAllCoctels(filterCoctelsData);
+     renderAllCoctels(filterData); 
 };
 
 
 const handleClick=(event)=>{
-    event.preventDefault()
-    if(input.value.length>0){
+    /* event.preventDefault() */
+   /*  if (input.value.length>0){
+    const data=coctelsData.find((eachcoctels)=>eachcoctels.Name===input.value);
+    if(input.value === coctelsData)
+    return data
+    }else if(input.value.length>0){
         alert('Ingrese un valor valido');
     }
     else {
-     getDataApi();      
-}};
-    
+        drinklink.href="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
+        
+}
+}; */
+     getDataApi();  
  /* window.location.href='https://www.thecocktaildb.com/'; */
 
 //cuando carga la pagina
