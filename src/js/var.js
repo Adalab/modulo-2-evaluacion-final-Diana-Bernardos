@@ -5,3 +5,6 @@
 const input=document.querySelector(".js_input");
 const btn=document.querySelector(".js_btn_search");
 const ul=document.querySelector(".js_list");
+const li=document.querySelector(".js_img");
+
+const btnb=document.getElementById(".btnb");
