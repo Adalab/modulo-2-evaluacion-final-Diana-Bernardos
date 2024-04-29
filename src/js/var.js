@@ -8,3 +8,4 @@ const ul=document.querySelector(".js_list");
 const li=document.querySelector(".js_img");
 /* const inputb=docuemnt.getElementById("inputDrink"); */
 const btnb=document.getElementById(".btnb");
+const reset=document.querySelector(".js_btn-reset");

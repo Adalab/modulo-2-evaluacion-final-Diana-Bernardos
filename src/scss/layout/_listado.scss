@@ -1,12 +1,38 @@
 .listado{
     display: flex;
+    justify-content: center;
     flex-direction: column;
-    padding-top: 30px;
+    padding-left: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+.list{
+list-style-type: none;
+align-items: center;
+display: flex;
+flex-direction: column;
+width:250px;
+height:200px;
+font-size: 20px;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+color:rgb(184, 163, 230);
 
 }
-.img{
-    height:150px;
-    width: 150px;
-    padding-top: 20px;
+.list li {
+    text-align: center;
+    margin: 30px 0; 
+  }
+  .list img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    border:solid;
+    border-color: aquamarine;
+  }
 
-};
+  
+  .list p{
+    margin: 5px 0 0;
+  }
+
+ 
