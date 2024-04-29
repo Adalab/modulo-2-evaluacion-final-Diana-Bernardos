@@ -18,11 +18,9 @@ const renderOneDrink=(drink) =>{
 const addFavorite=(ev) =>{
     //datos del coctel
     const liClickedId = ev.currentTarget.id;
-   const clickedDrink = drinksData.find(
-    (item) => item.strDrink === liClickedId);
-   const favoriteIndex = favoriteddrinks.findIndex(
-    (item) => item.strDrink=== liClickedId
-);
+   const clickedDrink = drinksData.find(item => item.strDrink === liClickedId);
+   const favoriteIndex = favoriteddrinks.findIndex(item => item.strDrink=== liClickedId);
+
   if(!clickedDrink)return;//si esta el coctel
   //verificar si es fav
 
@@ -35,6 +33,7 @@ const addFavorite=(ev) =>{
   }
   renderAllDrinks(drinksData);
   localStorage.setItem("favoriteddrinks",JSON.stringify(favoriteddrinks));
+  addEventListeners();
 };
 
 // creamos una funcion que renderize todos los cocteles
@@ -43,24 +42,25 @@ function renderAllDrinks(array){
     ul.innerHTML= array.map(renderOneDrink).join('');
     addEventListeners();
 };
-
 function addEventListeners(){
     const allLi= document.querySelectorAll('.js_list');
     allLi.forEach(li=>li.addEventListener('click', addFavorite));
+    const allImages=document.querySelectorAll('.js_img');
+    allImages.forEach(img=>img.addEventListener('click', addFavorite));
 } ;
 
-
-//hacemos peticion al servidor 
-
-//se ejecuta cuando el usuario escribe en el input
 const renderSearchedDrink =(drink)=>{
+  if(!drink || !drink.strDrink)return '';
+
     return `<div class="searched-drink-card">
     <h3>${drink.strDrink}</h3>
     <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}"/>
     <p>${drink.strInstructions}</p>
     </div>`;
+    
 };
     
+
 const handleInput = () =>{
    const inputValue=document.getElementById("inputDrink").value.toLowerCase()
   if(drinksData && drinksData.length>0){
@@ -105,21 +105,22 @@ const handleClick=(event)=>{
   console.log(event.currentTarget.dataset.name);
   // buscar en el array por el id clicado
   const clickedDrink = drinksData.find((item) => item.strDrink === liCLickedId);
-  if (clickedDrink){}
+  if (clickedDrink){
   console.log(clickedDrink.strDrink);
- };
+ }};
 
 const addClickListener=()=>{
   const allLi=document.querySelectorAll('li');
-  allLi.forEach(li=>li.addEventListener('click', addFavorite));      
+  allLi.forEach(li=>li.addEventListener('click', addFavorite));  
+   
  }; 
 
 
-
+ 
 //cuando carga la pagina
 getDataApi();
 init();
-addEventListeners();
+
 
 input.addEventListener('input', handleInput);
 btn.addEventListener('click', handleClick);
