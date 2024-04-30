@@ -3,67 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Adalab Web Starter Kit</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <title>Evaluacion Modulo 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="stylesheet" href="https://fontawesome.com/icons/magnifying-glass?f=classic&s=solid">
+    <link rel="stylesheet" href="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita">
+    <link rel="stylesheet" href="https://www.thecocktaildb.com"/>
     
+    
+    
+    
+
     <link rel="icon" href="./images/favicon.png" />
-    <link rel="stylesheet" href="./assets/main-62015576.css">
+    
+    <link rel="stylesheet" href="./assets/index-c82ce294.css">
   </head>
 
   <body>
-    <div class="page">
-      <header class="page__header">
-  <img src="./images/logo-adalab.png" alt="Adalab">
-  <h1>Bienvenidos a Adalab</h1>
-</header>
 
-      <main class="page__main">
-  <h2>Este es el starter kit de Adalab</h2>
-  <p>Lo usamos para aprender:</p>
-  <ul class="main__list">
-    <li>Sass</li>
-    <li>HTML partials</li>
-    <li>Gulp</li>
-    <li>y muchas cosas más</li>
-  </ul>
-  <p>Si quieres saber cúales son las rutas correctas para:</p>
-  <ul class="main__list">
-    <li>
-      una <code class="code">&lt;img /&gt;</code> mira el fichero
-      <code class="code">./src/html/partials/header.html</code>.
-    </li>
-    <li>
-      y para un <code class="code">background-image</code> mira el fichero
-      <code class="code">./src/html/scss/layout/_page.scss</code>.
-    </li>
-  </ul>
-  <p>
-    Si quieres saber cómo usar un partial HTML dentro de otro partial, busca en la carperta
-    <code class="code">./src/html/index.html</code> y
-    <code class="code">./src/html/partials/main.html</code>, y verás cómo estamos creando estos
-    enlaces:
-  </p>
-  <ul class="main__list">
-    <li>
-      <a class="link__adalab" href="https://adalab.es">Adalab</a>
 
-    </li>
-    <li>
-      <a class="{=$aClass}" href="./more-info.html">Más info del starter kit</a>
+<main>
+  <header class="header">
+    <h1>Buscador Cocteles</h1>
+  </header>
+  <div>
+    <form class="form" id="cocktailForm">
+      <label for="inputDrink">
+        <input class="input js_input" class="inputb" type="text" placeholder="Tu cocktail" id="inputDrink" value=""/></label>
+  
+      <button class="btn js_btn_search"><a href="https://www.thecocktaildb.com/">SEARCH</i></a></button> 
+      <button class="reset">RESET</button>
+</form>
+  <div id="searchResultContainer"></div>
+  <div id="searched-drink-card"></div>
+  <div id="selectdDrinkInfo"></div>
 
-    </li>
-  </ul>
+
+
+</div>
+
+
 </main>
 
-      <footer class="page__footer">
-  <small>
-    &copy; Todos los derechos reservados
-    <a class="link__adalab" href="https://adalab.es">Adalab</a>
+<title class="title"><h4>Lista</h4></title>
 
-  </small>
-</footer>
-
+<section class="listado" id="coctel-container">
+ 
+<div id="favoriteDrinksContainer" class="fav">
+        <aside class="aside">
+            <h2>Favoritos</h2>
+        <ul id="favoriteList" class="list-fav"></ul>
+    </aside>
+        
     </div>
+    <ul class="list js_list">
+
+
+        <li class="js_img">
+            <img src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg" alt="coctel1" 
+            id="strDrink1">
+
+
+            <p>Margarita</p>
+        </li>
+        <li class="js_img">
+            <img src="https://www.thecocktaildb.com/images/media/drink/bry4qh1582751040.jpg" alt="coctel2" id="strDrink2">
+
+
+            <p>Blue Margarita</p>
+        </li>
+        <li class="js_img">
+            <img src="https://www.thecocktaildb.com/images/media/drink/loezxn1504373874.jpg" alt="coctel3" id="strDrink3">
+
+            <p>Tommy Margarita</p>
+        </li>
+        <li class="js_img"> 
+            <img src="https://www.thecocktaildb.com/images/media/drink/srpxxp1441209622.jpg" alt="coctel4" id="strDrink4">
+            <p>Whitecap Margarita</p>
+        </li>
+        <li class="js_img">
+            <img src="https://www.thecocktaildb.com/images/media/drink/tqyrpw1439905311.jpg" alt="coctel5" id="strDrink5">
+            <p>Strawberry Margarita</p>
+        </li>
+        <li class="js_img">
+            <img src="https://www.thecocktaildb.com/images/media/drink/dztcv51598717861.jpg" alt="coctel6" id="strDrink6">
+            <p>Smashed Watermelon Margarita</p>
+        </li>
+    </ul>
+   
+
+</section>
+
     <script src="./js/main.js"></script>
   </body>
 </html>
