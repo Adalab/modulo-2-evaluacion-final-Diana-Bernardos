@@ -29,9 +29,10 @@ color:rgb(184, 163, 230);
 row-gap: 10px;
 
 @media all and (width >200px){
-  
-  text-align: center;
-  align-items: center;
+  display:grid;
+grid-template-columns: 1fr 1fr ;
+align-items: center;;
+ 
 
 }
 @media all and (width >468px){
