@@ -15,24 +15,26 @@ const renderOneDrink=(drink) =>{
 </li>`;
 };
 
+
 const addFavorite=(ev) =>{
     //datos del coctel
     const liClickedId = ev.currentTarget.id;
-   const clickedDrink = drinksData.find(item => item.strDrink === liClickedId);
-   const favoriteIndex = favoriteddrinks.findIndex(item => item.strDrink=== liClickedId);
+   const clickedDrinksData = drinksData.find(item => item.strDrink === liClickedId);
+   const favoriteClickedIndex = favoriteddrinks.findIndex(item => item.strDrink=== liClickedId);
 
-  if(!clickedDrink)return;//si esta el coctel
+  if(!clickedDrinksData)return;//si esta el coctel
   //verificar si es fav
 
-  if (favoriteIndex === -1) {
+  if (favoriteClickedIndex === -1) {
     //añadir a fav si el coctel no esta
-    favoriteddrinks.push(clickedDrink);
+    favoriteddrinks.push(clickedDrinksData);
   } else {
     //quitarlo de fav
-    favoriteddrinks.splice(favoriteIndex, 1);
+    favoriteddrinks.splice(favoriteClickedIndex, 1);
   }
   renderAllDrinks(drinksData);
   localStorage.setItem("favoriteddrinks",JSON.stringify(favoriteddrinks));
+  console.log("lista de fav",favoriteddrinks);
   addEventListeners();
 };
 
@@ -41,12 +43,22 @@ function renderAllDrinks(array){
   const ul=document.querySelector('.js_list');
     ul.innerHTML= array.map(renderOneDrink).join('');
     addEventListeners();
+    renderFavoriteDrinks();
+  /* favoriteddrinks(); */
+    addEventListeners();
+};
+
+function renderFavoriteDrinks(){
+    const ul=document.getElementById("favoriteList");
+    favoriteList.innerHTML=favoriteddrinks.map(drink =>`<li>${drink.strDrink}</li>`).join('');
+    
 };
 function addEventListeners(){
     const allLi= document.querySelectorAll('.js_list');
     allLi.forEach(li=>li.addEventListener('click', addFavorite));
     const allImages=document.querySelectorAll('.js_img');
     allImages.forEach(img=>img.addEventListener('click', addFavorite));
+    
 } ;
 
 const renderSearchedDrink =(drink)=>{
@@ -59,8 +71,8 @@ const renderSearchedDrink =(drink)=>{
     </div>`;
     
 };
-    
 
+    
 const handleInput = () =>{
    const inputValue=document.getElementById("inputDrink").value.toLowerCase()
   if(drinksData && drinksData.length>0){
@@ -98,7 +110,8 @@ const init=()=>{
     if(drinksFavLocal !==null) {
     favoriteddrinks=JSON.parse(drinksFavLocal);
      getDataApi();
-  }};     
+  }};   
+
 
 const handleClick=(event)=>{
   const liCLickedId = event.currentTarget.id;
@@ -120,7 +133,6 @@ const addClickListener=()=>{
 //cuando carga la pagina
 getDataApi();
 init();
-
 
 input.addEventListener('input', handleInput);
 btn.addEventListener('click', handleClick);
